@@ -1,3 +1,7 @@
-FROM nginx
+FROM node
 
-CMD nginx -g "daemon off;"
+RUN set -eux ;\
+    apt-get update ;\
+    apt-get install git -y 
+
+#CMD nginx -g "daemon off;"
