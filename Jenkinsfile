@@ -1,6 +1,6 @@
 pipeline {
 
-  agent { label 'master' }
+  agent { label 'jenkins-jenkins-slave' }
 
   stages {
 
@@ -13,7 +13,7 @@ pipeline {
     stage('Deploy App') {
       steps {
         script {
-          kubernetesDeploy(configs: "nginx.yaml", kubeconfigId: "k8s-holacaracola")
+          kubernetesDeploy(configs: "nginx.yaml", kubeconfigId: "kubeconfig")
         }
       }
     }
