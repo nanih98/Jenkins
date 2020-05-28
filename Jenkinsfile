@@ -1,5 +1,10 @@
 pipeline {
   
+  environment {
+    registry = "550639688928.dkr.ecr.eu-west-1.amazonaws.com/k8s"
+    dockerImage = ""
+  }
+  
   agent any
 
   stages {
