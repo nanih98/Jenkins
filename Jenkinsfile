@@ -1,24 +1,19 @@
 pipeline {
-  
-  environment {
-    registry = "550639688928.dkr.ecr.eu-west-1.amazonaws.com/k8s"
-    dockerImage = ""
-  }
-  
-  agent any
+
+  agent { label 'jenkins-jenkins-slave' }
 
   stages {
 
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/nanih98/Jenkins.git'
+        git url:'https://github.com/nanih98/Jenkins.git'
       }
     }
 
-    stage('Build image') {
-      steps{
+    stage('Deploy App') {
+      steps {
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          kubernetesDeploy(configs: "nginx.yaml", kubeconfigId: "mykubeconfig")
         }
       }
     }
