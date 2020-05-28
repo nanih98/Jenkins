@@ -13,6 +13,7 @@ pipeline {
       steps{
         script {
           sh("kubectl get nodes")
+          sh("kubectl create -f nginx.yaml")
         }
       }
     }
