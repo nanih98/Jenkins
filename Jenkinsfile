@@ -9,14 +9,20 @@ pipeline {
         git url:'https://github.com/nanih98/Jenkins.git'
       }
     }
-
-    stage('Deploy App') {
+   stage('Check nodes') {
+      steps{
+        script {
+          sh("kubectl get nodes")
+        }
+      }
+    }
+   /* stage('Deploy App') {
       steps {
         script {
           kubernetesDeploy(configs: "nginx.yaml", kubeconfigId: "kubeconfig")
         }
       }
-    }
+    }*/
 
   }
 
